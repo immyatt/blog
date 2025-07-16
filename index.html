@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
 
-  <title>Industrial Visit Blog</title>
-
-
+    <link rel="stylesheet" href="sample.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 
 
 <body>
 
-  <!-- Sidebar -->
+    <!-- Sidebar -->
   <aside class="sidebar">
     <h1 class="sidebar-title">BSCS Industrial Tour</h1>
     <div class="sidebar-buttons">
 
-      <button id="day1" class="day-button" onclick="loadContent('day1')">
+      <button id="home" class="day-button" onclick="loadContent('home')">
         <div class="day-button-content">
           <span class="day-button-text">Home</span>
         </div>
       </button>
 
-      <button id="day2" class="day-button" onclick="loadContent('day2')">
+      <button id="speakers" class="day-button" onclick="loadContent('speakers')">
         <div class="day-button-content">
           <span class="day-button-text">Speakers</span>
         </div>
       </button>
 
-      <button id="day3" class="day-button" onclick="loadContent('day3')">
+      <button id="sched" class="day-button" onclick="loadContent('sched')">
         <div class="day-button-content">
           <span class="day-button-text">Schedule</span>
         </div>
       </button>
 
-      <button id="day4" class="day-button" onclick="loadContent('day4')">
+      <button id="others" class="day-button" onclick="loadContent('others')">
         <div class="day-button-content">
           <span class="day-button-text">Others</span>
         </div>
@@ -48,8 +46,7 @@
   </aside>
 
 
-
-  <!-- Content Area -->
+  <!-- Main Content Area -->
   <main class="main-content">
 
     
@@ -61,6 +58,7 @@
     
   </main>
 
+<!-- Footer Area -->
   <footer class="footer">
   <div class="footer-content">
     <p>2025 Alfaith Mae. All rights reserved</p>
@@ -72,9 +70,8 @@
   </div>
 </footer>
 
-
-  <script>
-    // Carousel functionality
+<script>
+        // Carousel functionality
     let currentSlide = 0;
     const carouselImages = {
       day1: [
@@ -165,25 +162,36 @@
     }
 
     const dayContents = {
-      "day1": `
+      "home": `
         <div class="content-header">
-  <h1 class="section-title">Welcome to BSCS Industrial Tour 2025</h1>
+            <h1 class="section-title">Welcome to BSCS Industrial Tour 2025</h1>
 
-  <div class="header-content-row">
-    <p class="section-subtitle">
-      Experience the perfect blend of discovery and excitement as we look back on the unforgettable 
-      moments and insights from our BSCS Tour 2025.
-    </p><br>
+    <div class="header-content">
+      <p class="section-subtitle">
+        Experience the perfect blend of discovery and excitement as we look back on the unforgettable 
+        moments and insights from our BSCS Tour 2025.
+      </p><br>
 
-    <div class="carousel-container">
-      ${createCarousel('day1')}
+      <div class="carousel-container">
+      ${createCarousel('home')}
+
     </div>
   </div>
+
+  <div class="day-activity-nav">
+  <button id="btn-day1" class="day-button active-button" onclick="showDayActivities('day1')">Day 1</button>
+  <button id="btn-day2" class="day-button" onclick="showDayActivities('day2')">Day 2</button>
+  <button id="btn-day3" class="day-button" onclick="showDayActivities('day3')">Day 3</button>
+  <button id="btn-extra" class="day-button" onclick="showDayActivities('extra')">Extra</button>
 </div>
 
-        
-        <div class="content-grid">
-          <div class="activity-card">
+
+
+<div class="activity-slide-wrapper">
+  <div class="activity-slide-group" id="day1-group">
+
+    <!-- Day 1 Cards -->
+    <div class="activity-card">
             <img src="uploads/day1/fd6.jpg" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Foundever</h3>
@@ -214,8 +222,13 @@
                 the experience even more inspiring, especially before we got to see the amazing Google facilities for ourselves.</p>
             </div>
           </div>
+  </div>
 
-          <div class="activity-card">
+
+  <div class="activity-slide-group" id="day2-group">
+
+    <!-- Day 2 Cards -->
+    <div class="activity-card">
             <img src="uploads/day2/t2.jpg" alt="Teleperformance" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Teleperformance</h3>
@@ -248,13 +261,17 @@
                 learning, but a new sense of direction as future professionals.</p>
             </div>
           </div>
+  </div>
 
-          <div class="content-grid">
-          <div class="activity-card">
-            <img src="uploads/day3/a4.jpg" alt="Asian Development Bank" class="activity-image">
-            <div class="activity-content">
-              <h3 class="activity-title">Asian Development Bank</h3>
-              <p class="activity-description">It was indeed such an eye-opener, our tour in the Asian Development Bank (ADB). We were first 
+
+  <div class="activity-slide-group" id="day3-group">
+
+    <!-- Day 3 Cards -->
+    <div class="activity-card">
+      <img src="uploads/day3/a4.jpg" alt="Asian Development Bank" class="activity-image">
+      <div class="activity-content">
+        <h3 class="activity-title">Asian Development Bank</h3>
+        <p class="activity-description">It was indeed such an eye-opener, our tour in the Asian Development Bank (ADB). We were first 
                  guided through a series of strict security inspections—an immediate testament to how seriously the institution prioritizes 
                  safety and protocol. Going towards the ADB library, passing through hallways that showcased a variety of historical artifacts 
                  and displays. Within the library, we were stunned by the sheer number of books and more surprised to 
@@ -268,14 +285,14 @@
                  IT leaders shared their journeys, insights into global development work, and the growing importance of tech in solving 
                  real-world problems. Not only did we hear inspiring stories, but these opportunities themselves, be it grants, internships,
                  or career guidance, encouraged us to dream bigger and aim for a place in international organizations like ADB.</p>
-            </div>
-          </div>
-          
-          <div class="activity-card">
-            <img src="uploads/day3/m6.jpg" alt="Microsourcing" class="activity-image">
-            <div class="activity-content">
-              <h3 class="activity-title">Microsourcing</h3>
-              <p class="activity-description">Our visit to MicroSourcing was both insightful and inspiring. The program began with a warm 
+      </div>
+    </div>
+    
+    <div class="activity-card">
+      <img src="uploads/day3/m6.jpg" alt="Microsourcing" class="activity-image">
+      <div class="activity-content">
+        <h3 class="activity-title">Microsourcing</h3>
+        <p class="activity-description">Our visit to MicroSourcing was both insightful and inspiring. The program began with a warm 
                 welcome from CEO Ms. Heidee Enriquez, who emphasized the importance of digital skills, adaptability, and lifelong learning 
                 in today’s fast-changing job market. We then learned about MicroSourcing’s journey as a pioneer in outsourcing, its global 
                 reach, and how it empowers Filipino talent through flexible work and career growth. A guided tour of their modern, 
@@ -283,12 +300,15 @@
                 valuable parts was the LinkedIn workshop, where we received hands-on tips on building a strong professional profile and 
                 preparing for real-world job hunting. The day ended with open conversations, gratitude, and a renewed sense of direction 
                 for our future careers.</p>
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="content-grid">
-          <div class="activity-card">
+
+  <div class="activity-slide-group" id="extra-group">
+
+    <!-- Extra Cards -->
+    <div class="activity-card">
             <img src="uploads/day4/cover/gc.jpeg" alt="Power technology" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Intramurus</h3>
@@ -329,11 +349,15 @@
                 (ukay-ukay), and bargain deals made our experience an energetic culmination.</p>
             </div>
           </div>
-          
-        </div>
+  </div>
+</div>
+
+</div>
+
+       
       `,
       
-      "day2": `
+      "speakers": `
         <div class="content-header">
           <h1 class="section-title">Speakers</h1>
           <p class="section-subtitle">We had the privilege of hearing from remarkable professionals who generously 
@@ -346,7 +370,12 @@
             <img src="uploads/hosts/zoe.jpg"  class="activity-image-host">
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ms. Zoe Diaz De Rivera</h3>
-              <p class="activity-description-host">IBPAP Representative</p>
+              <p class="activity-description-host">IBPAP Representative</p> 
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
           
@@ -355,6 +384,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Atty. Yves Gonzalez</h3>
               <p class="activity-description-host">Head of Government Affairs and Public Policy</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -363,6 +397,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ms. Beatrice Grace Bonjibod</h3>
               <p class="activity-description-host">Brand Marketing Specialist</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -371,6 +410,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ralph Vincent Regalado</h3>
               <p class="activity-description-host"> Chief Scientist and Head of AI</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -379,6 +423,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Jazmine Calma</h3>
               <p class="activity-description-host"> Senior Engineer for Quality Assurance</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -387,6 +436,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Toni-Jan Keith Monserrat</h3>
               <p class="activity-description-host">Senior Principal Engineer for AI and Data</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -395,6 +449,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Matt Farley</h3>
               <p class="activity-description-host">Director of the Infrastructure & Technology Division</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -403,6 +462,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Peter Fizelley</h3>
               <p class="activity-description-host">Chief Information Security Officer</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -411,6 +475,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Stephanie King-Chung Hung</h3>
               <p class="activity-description-host">Chief Information Officer and Director General of ITD</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -419,6 +488,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Miguel Siriban</h3>
               <p class="activity-description-host"> UI/UX Designer and UI Developer</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -427,6 +501,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Ms. Heidee Enriquez</h3>
               <p class="activity-description-host">  CEO of MicroSourcing</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
           
@@ -435,7 +514,7 @@
 
 
 
-      "day3": `
+      "sched": `
         <div class="content-header">
           <h1 class="section-title">Schedules</h1>
           <p class="section-subtitle">Here are the following schecdules of the whole tour.</p>
@@ -449,7 +528,7 @@
           
           
       `,
-      "day4": `
+      "others": `
         <div class="content-header">
           <h1 class="section-title">Spacial Thanks To...</h1>
           <p class="section-subtitle">Our unforgettable BSCS Tour 2025 wouldn’t have been possible without the efforts, guidance, and 
@@ -521,6 +600,9 @@
         if (document.querySelector('.carousel-container')) {
           currentSlide = 0;
         }
+
+        // Update the URL hash without triggering a scroll
+        history.replaceState(null, null, '#' + day);
       }, 200);
       
       document.querySelectorAll(".day-button").forEach(btn =>
@@ -529,15 +611,54 @@
       document.getElementById(day).classList.add("active-button");
     }
 
+
+function showDayActivities(day) {
+  // Hide all groups first
+  const groups = ['day1', 'day2', 'day3', 'extra'];
+  groups.forEach(g => {
+    const el = document.getElementById(`${g}-group`);
+    const btn = document.getElementById(`btn-${g}`);
+    if (el) {
+      el.style.display = 'none';
+      el.classList.remove('active');
+    }
+    if (btn) btn.classList.remove('active-button');
+  });
+
+  // Show selected group
+  const selectedGroup = document.getElementById(`${day}-group`);
+  const selectedBtn = document.getElementById(`btn-${day}`);
+  if (selectedGroup) {
+    selectedGroup.style.display = 'flex';
+    selectedGroup.classList.add('active');
+  }
+  if (selectedBtn) selectedBtn.classList.add('active-button');
+}
+
+
+
     // Transition styles
     document.getElementById("content").style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
     // Initialize
-    window.onload = () => {
-      loadContent("day1");
-      startCarouselAutoplay();
-    };
-  </script>
+  window.onload = () => {
+    // Get the current hash from URL (remove the # symbol)
+    const currentHash = window.location.hash.slice(1);
+    
+    // If there's a hash and it corresponds to a valid section, load that section
+    if (currentHash && document.getElementById(currentHash)) {
+      loadContent(currentHash);
+    } else {
+      // Otherwise load the home page
+      loadContent("home");
+    }
+    
+    startCarouselAutoplay();
+    showDayActivities("day1");
+};
 
+
+</script>
+    
 </body>
 </html>
