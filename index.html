@@ -1,657 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
 
-  <title>Industrial Visit Blog</title>
-
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-  font-family: 'Inter', sans-serif;
-  background: #fafafa;
-  color: #333;
-  margin: 0;
-  padding-top: 70px;
-  height: auto;
-  overflow: auto;
-  display: block;
-}
-    
-    /* Sidebar  */
-.sidebar {
-  width: 100%;
-  height: auto;
-  background: white;
-  border-bottom: 1px solid black;
-  padding: 30px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.sidebar-title {
-  font-size: 25px;
-  font-weight: 800;
-  color: #111827;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.sidebar-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-    
-    .day-button {
-      background: transparent;
-      border: none;
-      padding: 12px 16px;
-      text-align: left;
-      font-size: 14px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      color: #6b7280;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .day-button:hover {
-      background: #e3e6eb;
-      color: #374151;
-    }
-    
-    .day-button-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-    
-    /* Active Button Styling */
-    .active-button {
-      background: #111827;
-      color: white !important;
-    }
-        
-    .active-button:hover {
-      background: #111827;
-    }
-    
-    /* Main Content Styles */
-    .main-content {
-  overflow-y: visible;
-  min-height: calc(100vh - 70px); 
-}
-    
-    .content-container {
-      max-width: 950px;
-      margin: 0 auto;
-      padding: 10px 10px;
-    }
-    
-    .content-header {
-      margin-top: 30px;
-      margin-bottom: 50px;
-    }
-    
-    .section-title {
-      font-size: 36px;
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-    
-    .section-subtitle {
-      color: #6b7280;
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-    }
-    
-    /* Carousel Styles */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      height: 450px;
-      border-radius: 12px;
-      margin-bottom: 40px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .carousel-wrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .carousel-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-    }
-    
-    .carousel-slide.active {
-      opacity: 1;
-    }
-    
-    .carousel-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .carousel-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      border: none;
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-    
-    .carousel-nav:hover {
-      background: rgba(0, 0, 0, 0.7);
-      transform: translateY(-50%) scale(1.1);
-    }
-    
-    .carousel-prev {
-      left: 15px;
-    }
-    
-    .carousel-next {
-      right: 15px;
-    }
-    
-    .carousel-dots {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-    
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .carousel-dot.active {
-      background: white;
-      transform: scale(1.2);
-    }
-    
-    .hero-image {
-      width: 100%;
-      height: 300px;
-      border-radius: 12px;
-      object-fit: cover;
-      margin-bottom: 40px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-    
-    .content-grid {
-      display: grid;
-      gap: 30px;
-    }
-    
-     .activity-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #f3f4f6;
-      transition: all 0.3s ease;
-      padding: 20px;
-      position: relative;
-    }
-    
-    .activity-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-      border-color: #e5e7eb;
-    }
-    
-    .activity-image {
-      width: 450px;
-      height: 350px;
-      object-fit: cover;
-      float: left;
-      margin: 0 20px 10px 0;
-      border-radius: 8px;
-      shape-outside: margin-box;
-    }
-    
-    .activity-content {
-      text-align: justify;
-    }
-    
-    .activity-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-    
-    .activity-description {
-      color: #6b7280;
-      font-size: 16px;
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .activity-description-djm {
-      color: #303133;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.6;
-      flex: 1;
-    }
-    
-    .simple-activity {
-      padding: 20px 0;
-      border-bottom: 1px solid #f3f4f6;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    
-    .simple-activity:last-child {
-      border-bottom: none;
-    }
-    
-    .simple-activity-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: #f9fafb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    
-    .simple-activity-content {
-      flex: 1;
-    }
-    
-    .simple-activity-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: #111827;
-      margin-bottom: 4px;
-    }
-    
-    .simple-activity-description {
-      color: #6b7280;
-      font-size: 14px;
-    }
-
-
-
-    .content-grid-host {/*host*/
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 10px;
-}
-
-.activity-card-host {
-  background: #fff;
-  padding: 16px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.activity-card-host:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.activity-image-host {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.activity-content-host {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.activity-title-host {
-  margin: 0;
-  font-size: 1.1em;
-  font-weight: bold;
-}
-
-.activity-description-host {
-  margin-top: 4px;
-  font-size: 0.95em;
-  color: #666;
-}
-
-
-
-    /* Scrollbar styling */
-    .main-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    .main-content::-webkit-scrollbar-track {
-      background: #f9fafb;
-    }
-    
-    .main-content::-webkit-scrollbar-thumb {
-      background: #d1d5db;
-      border-radius: 3px;
-    }
-    
-    .main-content::-webkit-scrollbar-thumb:hover {
-      background: #9ca3af;
-    }
-
-
-    .activity-card-one {
-  position: relative;
-}
-
-.activity-image-one {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-
-/* === Coordinators  === */
-.activity-card-coor {
-  background: #fff;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.activity-title-coor {
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.coordinator-grid {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
-  gap: 20px;
-}
-
-.coordinator-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px;
-}
-
-.activity-image-coor {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.coor-name {
-  font-weight: bold;
-  font-size: 1em;
-  margin: 0;
-}
-
-.coor-role {
-  font-size: 0.9em;
-  color: #666;
-  margin-top: 4px;
-}
-
-
-/* === User Profile  === */
-.activity-card-user {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 30px;
-}
-
-.activity-image-user {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.activity-content-user {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.activity-title-user {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 0;
-}
-
-.activity-description-user {
-  font-size: 0.95em;
-  color: #555;
-  margin-top: 6px;
-}
-
-
-  .footer {
-  background-color: #f3f4f6;
-  padding: 20px 0;
-  text-align: center;
-  color: #6b7280;
-  font-size: 14px;
-  border-top: 1px solid #e5e7eb;
-}
-
-.footer-content {
-  max-width: 950px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.footer-links a {
-  color: #374151;
-  text-decoration: none;
-  margin: 0 5px;
-  font-weight: 500;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      
-      .sidebar {
-    padding: 12px 16px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-      
-      .sidebar-title {
-    font-size: 18px; 
-    flex: 1 1 100%;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-      
-      .sidebar-buttons {
-    flex: 1 1 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-  }
-      
-       .day-button {
-    padding: 8px 12px;
-    font-size: 12px;
-    border-radius: 6px;
-    min-width: 80px;
-  }
-      
-      .content-container {
-        padding: 30px 20px;
-      }
-      
-      .section-title {
-        font-size: 28px;
-      }
-      
-      .carousel-container {
-        height: 200px;
-      }
-      
-      .activity-card {
-        flex-direction: column;
-        min-height: auto;
-      }
-      
-      .activity-image {
-        width: 100%;
-        height: 200px;
-      }
-      
-      .activity-content {
-        padding: 20px;
-      }
-
-      .activity-description {
-      font-size: 14px;
-    }
-      
-      .carousel-nav {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
-      }
-      
-      .carousel-prev {
-        left: 10px;
-      }
-      
-      .carousel-next {
-        right: 10px;
-      }
-
-      .content-grid-host {
-    grid-template-columns: 1fr;
-  }
-
-  .activity-card-host {
-    flex-direction: row; /* already row by default, but just to ensure */
-    text-align: left;
-  }
-
-  .activity-content-host {
-    align-items: flex-start;
-  }
-    }
-  </style>
-
-
+    <link rel="stylesheet" href="sample.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 
 
 <body>
 
-  <!-- Sidebar -->
+    <!-- Sidebar -->
   <aside class="sidebar">
     <h1 class="sidebar-title">BSCS Industrial Tour</h1>
     <div class="sidebar-buttons">
 
-      <button id="day1" class="day-button" onclick="loadContent('day1')">
+      <button id="home" class="day-button" onclick="loadContent('home')">
         <div class="day-button-content">
           <span class="day-button-text">Home</span>
         </div>
       </button>
 
-      <button id="day2" class="day-button" onclick="loadContent('day2')">
+      <button id="speakers" class="day-button" onclick="loadContent('speakers')">
         <div class="day-button-content">
           <span class="day-button-text">Speakers</span>
         </div>
       </button>
 
-      <button id="day3" class="day-button" onclick="loadContent('day3')">
+      <button id="sched" class="day-button" onclick="loadContent('sched')">
         <div class="day-button-content">
           <span class="day-button-text">Schedule</span>
         </div>
       </button>
 
-      <button id="day4" class="day-button" onclick="loadContent('day4')">
+      <button id="others" class="day-button" onclick="loadContent('others')">
         <div class="day-button-content">
           <span class="day-button-text">Others</span>
         </div>
@@ -662,8 +46,7 @@
   </aside>
 
 
-
-  <!-- Content Area -->
+  <!-- Main Content Area -->
   <main class="main-content">
 
     
@@ -675,6 +58,7 @@
     
   </main>
 
+<!-- Footer Area -->
   <footer class="footer">
   <div class="footer-content">
     <p>2025 Alfaith Mae. All rights reserved</p>
@@ -686,9 +70,8 @@
   </div>
 </footer>
 
-
-  <script>
-    // Carousel functionality
+<script>
+        // Carousel functionality
     let currentSlide = 0;
     const carouselImages = {
       day1: [
@@ -779,25 +162,36 @@
     }
 
     const dayContents = {
-      "day1": `
+      "home": `
         <div class="content-header">
-  <h1 class="section-title">Welcome to BSCS Industrial Tour 2025</h1>
+            <h1 class="section-title">Welcome to BSCS Industrial Tour 2025</h1>
 
-  <div class="header-content-row">
-    <p class="section-subtitle">
-      Experience the perfect blend of discovery and excitement as we look back on the unforgettable 
-      moments and insights from our BSCS Tour 2025.
-    </p><br>
+    <div class="header-content">
+      <p class="section-subtitle">
+        Experience the perfect blend of discovery and excitement as we look back on the unforgettable 
+        moments and insights from our BSCS Tour 2025.
+      </p><br>
 
-    <div class="carousel-container">
-      ${createCarousel('day1')}
+      <div class="carousel-container">
+      ${createCarousel('home')}
+
     </div>
   </div>
+
+  <div class="day-activity-nav">
+  <button id="btn-day1" class="day-button active-button" onclick="showDayActivities('day1')">Day 1</button>
+  <button id="btn-day2" class="day-button" onclick="showDayActivities('day2')">Day 2</button>
+  <button id="btn-day3" class="day-button" onclick="showDayActivities('day3')">Day 3</button>
+  <button id="btn-extra" class="day-button" onclick="showDayActivities('extra')">Extra</button>
 </div>
 
-        
-        <div class="content-grid">
-          <div class="activity-card">
+
+
+<div class="activity-slide-wrapper">
+  <div class="activity-slide-group" id="day1-group">
+
+    <!-- Day 1 Cards -->
+    <div class="activity-card">
             <img src="uploads/day1/fd6.jpg" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Foundever</h3>
@@ -828,8 +222,13 @@
                 the experience even more inspiring, especially before we got to see the amazing Google facilities for ourselves.</p>
             </div>
           </div>
+  </div>
 
-          <div class="activity-card">
+
+  <div class="activity-slide-group" id="day2-group">
+
+    <!-- Day 2 Cards -->
+    <div class="activity-card">
             <img src="uploads/day2/t2.jpg" alt="Teleperformance" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Teleperformance</h3>
@@ -862,13 +261,17 @@
                 learning, but a new sense of direction as future professionals.</p>
             </div>
           </div>
+  </div>
 
-          <div class="content-grid">
-          <div class="activity-card">
-            <img src="uploads/day3/a4.jpg" alt="Asian Development Bank" class="activity-image">
-            <div class="activity-content">
-              <h3 class="activity-title">Asian Development Bank</h3>
-              <p class="activity-description">It was indeed such an eye-opener, our tour in the Asian Development Bank (ADB). We were first 
+
+  <div class="activity-slide-group" id="day3-group">
+
+    <!-- Day 3 Cards -->
+    <div class="activity-card">
+      <img src="uploads/day3/a4.jpg" alt="Asian Development Bank" class="activity-image">
+      <div class="activity-content">
+        <h3 class="activity-title">Asian Development Bank</h3>
+        <p class="activity-description">It was indeed such an eye-opener, our tour in the Asian Development Bank (ADB). We were first 
                  guided through a series of strict security inspections—an immediate testament to how seriously the institution prioritizes 
                  safety and protocol. Going towards the ADB library, passing through hallways that showcased a variety of historical artifacts 
                  and displays. Within the library, we were stunned by the sheer number of books and more surprised to 
@@ -882,14 +285,14 @@
                  IT leaders shared their journeys, insights into global development work, and the growing importance of tech in solving 
                  real-world problems. Not only did we hear inspiring stories, but these opportunities themselves, be it grants, internships,
                  or career guidance, encouraged us to dream bigger and aim for a place in international organizations like ADB.</p>
-            </div>
-          </div>
-          
-          <div class="activity-card">
-            <img src="uploads/day3/m6.jpg" alt="Microsourcing" class="activity-image">
-            <div class="activity-content">
-              <h3 class="activity-title">Microsourcing</h3>
-              <p class="activity-description">Our visit to MicroSourcing was both insightful and inspiring. The program began with a warm 
+      </div>
+    </div>
+    
+    <div class="activity-card">
+      <img src="uploads/day3/m6.jpg" alt="Microsourcing" class="activity-image">
+      <div class="activity-content">
+        <h3 class="activity-title">Microsourcing</h3>
+        <p class="activity-description">Our visit to MicroSourcing was both insightful and inspiring. The program began with a warm 
                 welcome from CEO Ms. Heidee Enriquez, who emphasized the importance of digital skills, adaptability, and lifelong learning 
                 in today’s fast-changing job market. We then learned about MicroSourcing’s journey as a pioneer in outsourcing, its global 
                 reach, and how it empowers Filipino talent through flexible work and career growth. A guided tour of their modern, 
@@ -897,12 +300,15 @@
                 valuable parts was the LinkedIn workshop, where we received hands-on tips on building a strong professional profile and 
                 preparing for real-world job hunting. The day ended with open conversations, gratitude, and a renewed sense of direction 
                 for our future careers.</p>
-            </div>
-          </div>
-        </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="content-grid">
-          <div class="activity-card">
+
+  <div class="activity-slide-group" id="extra-group">
+
+    <!-- Extra Cards -->
+    <div class="activity-card">
             <img src="uploads/day4/cover/gc.jpeg" alt="Power technology" class="activity-image">
             <div class="activity-content">
               <h3 class="activity-title">Intramurus</h3>
@@ -943,11 +349,15 @@
                 (ukay-ukay), and bargain deals made our experience an energetic culmination.</p>
             </div>
           </div>
-          
-        </div>
+  </div>
+</div>
+
+</div>
+
+       
       `,
       
-      "day2": `
+      "speakers": `
         <div class="content-header">
           <h1 class="section-title">Speakers</h1>
           <p class="section-subtitle">We had the privilege of hearing from remarkable professionals who generously 
@@ -960,7 +370,12 @@
             <img src="uploads/hosts/zoe.jpg"  class="activity-image-host">
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ms. Zoe Diaz De Rivera</h3>
-              <p class="activity-description-host">IBPAP Representative</p>
+              <p class="activity-description-host">IBPAP Representative</p> 
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
           
@@ -969,6 +384,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Atty. Yves Gonzalez</h3>
               <p class="activity-description-host">Head of Government Affairs and Public Policy</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -977,6 +397,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ms. Beatrice Grace Bonjibod</h3>
               <p class="activity-description-host">Brand Marketing Specialist</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -985,6 +410,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Ralph Vincent Regalado</h3>
               <p class="activity-description-host"> Chief Scientist and Head of AI</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -993,6 +423,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Jazmine Calma</h3>
               <p class="activity-description-host"> Senior Engineer for Quality Assurance</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1001,6 +436,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Toni-Jan Keith Monserrat</h3>
               <p class="activity-description-host">Senior Principal Engineer for AI and Data</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1009,6 +449,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Matt Farley</h3>
               <p class="activity-description-host">Director of the Infrastructure & Technology Division</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1017,6 +462,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Peter Fizelley</h3>
               <p class="activity-description-host">Chief Information Security Officer</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1025,6 +475,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Stephanie King-Chung Hung</h3>
               <p class="activity-description-host">Chief Information Officer and Director General of ITD</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1033,6 +488,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host"> Miguel Siriban</h3>
               <p class="activity-description-host"> UI/UX Designer and UI Developer</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
 
@@ -1041,6 +501,11 @@
             <div class="activity-content-host">
               <h3 class="activity-title-host">Ms. Heidee Enriquez</h3>
               <p class="activity-description-host">  CEO of MicroSourcing</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
             </div>
           </div>
           
@@ -1049,7 +514,7 @@
 
 
 
-      "day3": `
+      "sched": `
         <div class="content-header">
           <h1 class="section-title">Schedules</h1>
           <p class="section-subtitle">Here are the following schecdules of the whole tour.</p>
@@ -1063,7 +528,7 @@
           
           
       `,
-      "day4": `
+      "others": `
         <div class="content-header">
           <h1 class="section-title">Spacial Thanks To...</h1>
           <p class="section-subtitle">Our unforgettable BSCS Tour 2025 wouldn’t have been possible without the efforts, guidance, and 
@@ -1135,6 +600,9 @@
         if (document.querySelector('.carousel-container')) {
           currentSlide = 0;
         }
+
+        // Update the URL hash without triggering a scroll
+        history.replaceState(null, null, '#' + day);
       }, 200);
       
       document.querySelectorAll(".day-button").forEach(btn =>
@@ -1143,15 +611,57 @@
       document.getElementById(day).classList.add("active-button");
     }
 
+
+function showDayActivities(day) {
+  // Hide all groups first
+  const groups = ['day1', 'day2', 'day3', 'extra'];
+  groups.forEach(g => {
+    const el = document.getElementById(`${g}-group`);
+    const btn = document.getElementById(`btn-${g}`);
+    if (el) {
+      el.style.display = 'none';
+      el.classList.remove('active');
+    }
+    if (btn) btn.classList.remove('active-button');
+  });
+
+  // Show selected group
+  const selectedGroup = document.getElementById(`${day}-group`);
+  const selectedBtn = document.getElementById(`btn-${day}`);
+  if (selectedGroup) {
+    selectedGroup.style.display = 'flex';
+    selectedGroup.classList.add('active');
+  }
+  if (selectedBtn) selectedBtn.classList.add('active-button');
+}
+
+
+
     // Transition styles
     document.getElementById("content").style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
     // Initialize
-    window.onload = () => {
-      loadContent("day1");
-      startCarouselAutoplay();
-    };
-  </script>
+  window.onload = () => {
+    // Get the current hash from URL (remove the # symbol)
+    const currentHash = window.location.hash.slice(1);
+    
+    // If there's a hash and it corresponds to a valid section, load that section
+    if (currentHash && document.getElementById(currentHash)) {
+      loadContent(currentHash);
+    } else {
+      // Otherwise load the home page
+      loadContent("home");
+    }
+    
+    startCarouselAutoplay();
+    showDayActivities("day1");
+};
 
+
+
+
+
+</script>
+    
 </body>
 </html>
