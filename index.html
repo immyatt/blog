@@ -364,8 +364,22 @@
             shared their expertise and experiences, each speaker offering valuable perspectives that enriched our 
             understanding and inspired us throughout the visit.</p>
         </div>
+
+    <div class="host-nav">
+  <button id="btn-all" class="day-button active-button" onclick="showhost('all')">All</button>
+  <button id="btn-foundever" class="day-button" onclick="showhost('foundever')">Foundever</button>
+  <button id="btn-google" class="day-button" onclick="showhost('google')">Google</button>
+  <button id="btn-tp" class="day-button" onclick="showhost('tp')">Teleperformance</button>
+  <button id="btn-kollab" class="day-button" onclick="showhost('kollab')">Kollab</button>
+  <button id="btn-adb" class="day-button" onclick="showhost('adb')">ADB</button>
+  <button id="btn-micro" class="day-button" onclick="showhost('micro')">Microsourcing</button>
+    </div>
         
-        <div class="content-grid-host">
+    <div class="content-grid-host show-all">
+
+      <div class="all">
+
+        <div class="foundever"> 
           <div class="activity-card-host">
             <img src="uploads/hosts/zoe.jpg"  class="activity-image-host">
             <div class="activity-content-host">
@@ -378,7 +392,9 @@
               </div>
             </div>
           </div>
-          
+        </div>
+
+        <div class="google">
           <div class="activity-card-host">
             <img src="uploads/hosts/atty.jpg" class="activity-image-host">
             <div class="activity-content-host">
@@ -391,7 +407,9 @@
               </div>
             </div>
           </div>
+        </div>
 
+        <div class="tp">
           <div class="activity-card-host">
             <img src="uploads/hosts/tp.jpg" class="activity-image-host">
             <div class="activity-content-host">
@@ -404,7 +422,9 @@
               </div>
             </div>
           </div>
+        </div>
 
+        <div class="kollab">
           <div class="activity-card-host">
             <img src="uploads/hosts/ral.jpg" class="activity-image-host">
             <div class="activity-content-host">
@@ -445,6 +465,21 @@
           </div>
 
           <div class="activity-card-host">
+            <img src="uploads/hosts/mik.jpg" class="activity-image-host">
+            <div class="activity-content-host">
+              <h3 class="activity-title-host"> Miguel Siriban</h3>
+              <p class="activity-description-host"> UI/UX Designer and UI Developer</p>
+              <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="adb">
+          <div class="activity-card-host">
             <img src="uploads/hosts/matt.jpg" class="activity-image-host">
             <div class="activity-content-host">
               <h3 class="activity-title-host">Matt Farley</h3>
@@ -482,20 +517,9 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="activity-card-host">
-            <img src="uploads/hosts/mik.jpg" class="activity-image-host">
-            <div class="activity-content-host">
-              <h3 class="activity-title-host"> Miguel Siriban</h3>
-              <p class="activity-description-host"> UI/UX Designer and UI Developer</p>
-              <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-              </div>
-            </div>
-          </div>
-
+        <div class="micro">
           <div class="activity-card-host">
             <img src="uploads/hosts/mi.jpg" class="activity-image-host">
             <div class="activity-content-host">
@@ -508,8 +532,11 @@
               </div>
             </div>
           </div>
-          
         </div>
+
+      </div>  
+
+    </div>
       `,
 
 
@@ -633,6 +660,21 @@ function showDayActivities(day) {
     selectedGroup.classList.add('active');
   }
   if (selectedBtn) selectedBtn.classList.add('active-button');
+}
+
+function showhost(category) {
+  // Remove all show- classes first
+  const gridHost = document.querySelector('.content-grid-host');
+  gridHost.classList.remove('show-all', 'show-foundever', 'show-google', 'show-tp', 'show-kollab', 'show-adb', 'show-micro');
+  
+  // Add the appropriate show class
+  gridHost.classList.add('show-' + category);
+  
+  // Update button states
+  document.querySelectorAll('.day-button').forEach(btn => {
+    btn.classList.remove('active-button');
+  });
+  document.getElementById('btn-' + category).classList.add('active-button');
 }
 
 
