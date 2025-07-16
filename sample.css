@@ -49,13 +49,27 @@
   gap: 20px;
 }
 
+/* Display host-nav buttons in a row */
+.host-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  margin: 50px 0 30px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
 /* Display day-activity-nav buttons in a row */
 .day-activity-nav {
   display: flex;
   flex-direction: row;
   gap: 30px;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 30px 0 20px 0;
 }
 
 /* Activity slide wrapper */
@@ -426,6 +440,39 @@
   margin: 0 auto;
 }
 
+/* Host filtering styles */
+.foundever, .google, .tp, .kollab, .adb, .micro {
+  display: none;
+}
+
+.all {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+.show-all .foundever,
+.show-all .google,
+.show-all .tp,
+.show-all .kollab,
+.show-all .adb,
+.show-all .micro {
+  display: contents;
+}
+
+.show-foundever .foundever,
+.show-google .google,
+.show-tp .tp,
+.show-kollab .kollab,
+.show-adb .adb,
+.show-micro .micro {
+  display: contents;
+}
+
+.activity-card-host {
+  width: 100%;
+}
+
 .activity-card-host {
   background: #fff;
   padding: 16px;
@@ -438,6 +485,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   margin-top: 70px;
+  margin-bottom: 20px;
   overflow: visible;
   height: 300px;
 }
@@ -670,11 +718,27 @@
     gap: 6px;
   }
       
-       .day-button {
+      .day-button {
     padding: 8px 12px;
     font-size: 12px;
     border-radius: 6px;
     min-width: 80px;
+  }
+
+  .host-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .host-nav .day-button {
+    font-size: 11px;
+    padding: 6px 10px;
+    flex: 0 1 auto;
+    white-space: nowrap;
+    margin: 2px;
   }
       
       .content-container {
@@ -731,7 +795,7 @@
   @media (max-width: 600px) {
     .content-grid-host {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 20px;
       padding: 10px;
     }
 
