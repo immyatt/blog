@@ -439,6 +439,7 @@
   position: relative;
   margin-top: 70px;
   overflow: visible;
+  height: 300px;
 }
 
 .activity-card-host:hover {
@@ -722,25 +723,24 @@
       }
 
       .content-grid-host {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
     padding: 10px;
   }
 
-  .activity-card-host {
-    flex-direction: column;
-    text-align: center;
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  @media (max-width: 600px) {
+    .content-grid-host {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 10px;
+    }
 
-  .activity-content-host {
-    align-items: center;
-  }
-
-  .header-content-row {
-    flex-direction: column;
-    align-items: flex-start;
+    .activity-card-host {
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   
