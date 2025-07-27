@@ -671,10 +671,16 @@ function showhost(category) {
   gridHost.classList.add('show-' + category);
   
   // Update button states
-  document.querySelectorAll('.day-button').forEach(btn => {
-    btn.classList.remove('active-button');
-  });
-  document.getElementById('btn-' + category).classList.add('active-button');
+  const hostNav = document.querySelector('.host-nav');
+  if (hostNav) {
+    hostNav.querySelectorAll('.day-button').forEach(btn => {
+      btn.classList.remove('active-button');
+    });
+    const activeBtn = hostNav.querySelector('#btn-' + category);
+    if (activeBtn) {
+      activeBtn.classList.add('active-button');
+    }
+  }
 }
 
 
